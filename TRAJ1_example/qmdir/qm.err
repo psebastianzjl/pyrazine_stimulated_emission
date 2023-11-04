@@ -1,0 +1,20 @@
+forrtl: error (69): process interrupted (SIGINT)
+Image              PC                Routine            Line        Source             
+dscf_omp           0000000005CA0F94  Unknown               Unknown  Unknown
+libc.so.6          00001518D5C42520  Unknown               Unknown  Unknown
+dscf_omp           00000000005F431F  fock0_                    190  fock0.f
+dscf_omp           00000000005ED66C  klshloop_                 286  klshloop.f
+dscf_omp           00000000005D3E58  shloop_                   714  shloop.f
+dscf_omp           00000000004F588E  shloop_omp_               254  shloop_omp.f
+dscf_omp           0000000003A5BE93  Unknown               Unknown  Unknown
+dscf_omp           0000000003A1D09A  Unknown               Unknown  Unknown
+dscf_omp           0000000003A1EA25  Unknown               Unknown  Unknown
+dscf_omp           00000000039E7655  Unknown               Unknown  Unknown
+dscf_omp           00000000004F4D5B  shloop_omp_               250  shloop_omp.f
+dscf_omp           00000000004B8DD0  fockbuild_                238  fockbuild.f
+dscf_omp           0000000000478870  scf_                      617  scf.f
+dscf_omp           000000000046B8FB  MAIN__                   1501  dscf.f
+dscf_omp           0000000000453A22  Unknown               Unknown  Unknown
+libc.so.6          00001518D5C29D90  Unknown               Unknown  Unknown
+libc.so.6          00001518D5C29E40  __libc_start_main     Unknown  Unknown
+dscf_omp           0000000000453929  Unknown               Unknown  Unknown

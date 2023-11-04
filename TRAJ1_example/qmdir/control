@@ -1,0 +1,102 @@
+$title
+$operating system unix
+$symmetry c1
+$redundant    file=coord
+$coord    file=coord
+$user-defined bonds    file=coord
+$atoms
+c  1-2,4-5                                                                     \
+   basis =c aug-cc-pVDZ                                                        \
+   cbas  =c aug-cc-pVDZ
+n  3,6                                                                         \
+   basis =n aug-cc-pVDZ                                                        \
+   cbas  =n aug-cc-pVDZ
+h  7-10                                                                        \
+   basis =h aug-cc-pVDZ                                                        \
+   cbas  =h aug-cc-pVDZ
+$basis    file=basis
+$rundimensions
+   dim(fock,dens)=17649
+   natoms=10
+   nshell=74
+   nbf(CAO)=186
+   dim(trafo[SAO<-->AO/CAO])=210
+   rhfshells=1
+$scfmo   file=mos
+$closed shells
+ a       1-21                                   ( 2 )
+$scfiterlimit     1000
+$scfconv        7
+$thize     0.10000000E-04
+$thime        5
+$scfdamp   start=0.300  step=0.050  min=0.100
+$scfdump
+$scfintunit
+ unit=30       size=0        file=twoint
+$scfdiis
+$maxcor    12000
+$scforbitalshift  automatic=.1
+$drvopt
+   cartesian  on
+   basis      off
+   global     off
+   hessian    on
+   dipole     on
+   nuclear polarizability
+$optimize
+   internal   on
+   redundant  on
+   cartesian  off
+   global     off
+   basis      off   logarithm
+$interconversion  off
+   qconv=1.d-7
+   maxiter=25
+$coordinateupdate
+   dqmax=0.3
+   interpolate  on
+   statistics    5
+$forceupdate
+   ahlrichs numgeo=0  mingeo=3 maxgeo=4 modus=<g|dq> dynamic fail=0.3
+   threig=0.005  reseig=0.005  thrbig=3.0  scale=1.00  damping=0.0
+$forceinit on
+   diag=default
+$energy    file=energy
+$grad    file=gradient
+$forceapprox   file=forceapprox
+$denconv     0.10000000E-06
+$freeze
+ implicit core=    6 virt=    0
+$cbas    file=auxbasis
+$ricc2
+adc(2)
+  geoopt model=adc(2)    state=(a 3)
+  maxiter= 200
+$excitations
+  irrep=a  multiplicity=  1  nexc= 4  npre=  5  nstart=  6
+  spectrum  states=all  operators=xdiplen,ydiplen,zdiplen
+  exprop  states=all unrelaxed  operators=xdiplen,ydiplen,zdiplen
+$last step      dscf
+$last SCF energy change = -.11264972E-01
+$charge from dscf
+         -0.000 (not to be modified here)
+$dipole from ricc2
+  x    -0.07753405844235    y    -0.10019751771098    z    -0.01464923547928    a.u.
+   | dipole | =    0.3241690351  debye
+$excitation_energies_CCS_____1^a___ file=exstates
+$last ADC(2) energy change= 0.11282999E-01
+$excitation_energies_ADC(2)__1^a___ file=exstates
+$t2_norm_of_re0_ADC(2)__1^a___ file=exstates
+$<le0|re0>-overlap_ADC(2)__1^a___ file=exstates
+$<le01|re01>-overlap_ADC(2)__1^a___ file=exstates
+$<le02|re02>-overlap_ADC(2)__1^a___ file=exstates
+$tranprop_ADC(2)____1^a_____0_to_1^a_____1 file=exstates
+$tranprop_ADC(2)____1^a_____0_to_1^a_____2 file=exstates
+$tranprop_ADC(2)____1^a_____0_to_1^a_____3 file=exstates
+$tranprop_ADC(2)____1^a_____0_to_1^a_____4 file=exstates
+$exstprop_ADC(2)___1^a_____1 file=exstates
+$exstprop_ADC(2)___1^a_____2 file=exstates
+$exstprop_ADC(2)___1^a_____3 file=exstates
+$exstprop_ADC(2)___1^a_____4 file=exstates
+$restart  dscf  twoint
+$end

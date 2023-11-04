@@ -1,0 +1,27 @@
+$method
+ qm "/path/to/interface/run.py ml_acc qmdir" 
+$system
+ nstate = 5
+ istate =  4  
+$dynamics
+ time = 200.0
+ end_state = 1
+ tstep = 0.5
+ max_toten_d = 5
+ max_toten_d_step = 5
+$surfhop
+ lz
+$output
+ bufile = backup.dat
+$machine_learning
+ nstates=5
+ current_state=3
+ num_models = 2
+ MLmodelIn=../ensemble1.unf
+ xyzfile=xyz.dat
+ YestFile=enest1.dat
+ YgradXYZestFile=gradest1.dat
+ natoms = 10
+ conf_thr = 4 
+ min_en_gap = 1
+$end
