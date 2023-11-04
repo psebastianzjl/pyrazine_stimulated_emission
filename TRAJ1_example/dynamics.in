@@ -7,8 +7,6 @@ $dynamics
  time = 200.0
  end_state = 1
  tstep = 0.5
- max_toten_d = 5
- max_toten_d_step = 5
 $surfhop
  lz
 $output
