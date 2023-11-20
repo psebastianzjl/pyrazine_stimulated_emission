@@ -48,32 +48,6 @@ def signal(eV, Ha, Ha_0, f, fs, delta=False):
     else:
         return 1. * v2
 
-def signal_sum(eV, Ha, Ha_0, f, fs, delta=False):
-    laser = eV2Ha(eV)
-    tau = fs2aut(fs)
-    S = 0
-    for (i, val) in enumerate(Ha):
-        w_in = val - Ha_0
-        dw = laser - w_in
-        v2 = f[i] / 2. * 3 / w_in
-        if not delta:
-            S += envelope(dw, tau) ** 2. * v2
-        else:
-            S += 1. * v2
-    return S 
-
-def signal_sum_deV(eV, deV, f, fs):
-    laser = eV2Ha(eV)
-    tau = fs2aut(fs)
-    S = 0
-    for (i, val) in enumerate(deV):
-        w_in = -1. * eV2Ha(val)
-        dw = laser - w_in
-        if w_in != 0:
-            v2 = f[i] / 2. * 3 / w_in
-            S += envelope(dw, tau) ** 2. * v2
-    return S 
-
 
 print(str(w_pu) + 'eV as pump pulse')
 eaEmax = 100
