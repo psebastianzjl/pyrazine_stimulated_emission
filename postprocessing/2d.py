@@ -48,20 +48,6 @@ def signal(eV, Ha, Ha_0, f, fs, delta=False): #Doorway-Function-wise
     else:
         return 1. * v2
 
-def signal_sum(eV, Ha, Ha_0, f, fs, delta=False):
-    laser = eV2Ha(eV)
-    tau = fs2aut(fs)
-    S = 0
-    for (i, val) in enumerate(Ha):
-        w_in = val - Ha_0
-        dw = laser - w_in
-        v2 = f[i] / 2. * 3 / w_in
-        if not delta:
-            S += envelope(dw, tau) ** 2. * v2
-        else:
-            S += 1. * v2
-    return S 
-
 def dissignal(w_in, Ha, Ha_0, f, taufs, niueV, w_preV): # input w=eV and tau=fs
     w_t = eV2Ha(w_in)
     w_pr = eV2Ha(w_preV)
@@ -71,33 +57,6 @@ def dissignal(w_in, Ha, Ha_0, f, taufs, niueV, w_preV): # input w=eV and tau=fs
     dw = w_t - w_ge
     v2 = f / 2. * 3 / w_ge
     return envelope(w_t - w_pr, tau) ** 2. * v2 * niu / (niu ** 2 + dw ** 2)
-
-def dissignal_sum(w_in, Ha, Ha_0, f, taufs, niueV, w_preV): # input w=eV and tau=fs
-    w_t = eV2Ha(w_in)
-    w_pr = eV2Ha(w_preV)
-    niu = eV2Ha(niueV)
-    tau = fs2aut(taufs)
-    S = 0
-    for (i, val) in enumerate(Ha):
-        w_ge = val - Ha_0
-        dw = w_t - w_ge
-        v2 = f[i] / 2. * 3 / w_ge
-        S += envelope(w_t - w_pr, tau) ** 2. * v2 * niu  / (niu ** 2 + dw ** 2)
-    return S
-
-def dissignal_sum_deV(w_in, deV, f, taufs, niueV, w_preV):
-    w_t = eV2Ha(w_in)
-    w_pr = eV2Ha(w_preV)
-    niu = eV2Ha(niueV)
-    tau = fs2aut(taufs)
-    S = 0
-    for (i, val) in enumerate(deV):
-        w_ge = -1. * eV2Ha(val) #given in negative
-        dw = w_t - w_ge
-        if w_ge != 0:
-            v2 = f[i] / 2. * 3 / w_ge
-            S += envelope(w_t - w_pr, tau) ** 2. * v2 * niu / (niu ** 2 + dw ** 2)
-    return S 
 
 def dissignal_R(w_in, Ha, Ha_0, f, taufs, niueV, w_preV): # input w=eV and tau=fs
     w_t = eV2Ha(w_in)       #parameter frequency
@@ -118,64 +77,6 @@ def dissignal_NR(w_in, Ha, Ha_0, f, taufs, niueV, w_preV): # input w=eV and tau=
     dw = w_t - w_ge
     v2 = f / 2. * 3 / w_ge
     return envelope(w_t - w_pr, tau) ** 2. * v2 / complex(niu, -dw)
-
-def dissignal_sum_delta(w_in, Ha, Ha_0, f, taufs, niueV, w_preV): # input w=eV and tau=fs
-    w_t = eV2Ha(w_in)
-    w_pr = eV2Ha(w_preV)
-    niu = eV2Ha(niueV)
-    tau = fs2au(taufs)
-    S = 0
-    for (i, val) in enumerate(Ha):
-        w_ge = val - Ha_0
-        dw = w_t - w_ge
-        if w_ge != 0:
-            v2 = f[i] / 2. * 3 / w_ge
-            S += 1 * v2 / complex(niu, dw)
-    return S
-
-def dissignal_sum_R(w_in, Ha, Ha_0, f, taufs, niueV, w_preV): # input w=eV and tau=fs
-    w_t = eV2Ha(w_in)
-    w_pr = eV2Ha(w_preV)
-    niu = eV2Ha(niueV)
-    tau = fs2au(taufs)
-    S = 0
-    for (i, val) in enumerate(Ha):
-        w_ge = val - Ha_0
-        dw = w_t - w_ge
-        if w_ge != 0:
-            v2 = f[i] / 2. * 3 / w_ge
-            S += envelope(w_t - w_pr, tau) ** 2. * v2 / complex(niu, dw)
-    return S
-
-def dissignal_sum_NR(w_in, Ha, Ha_0, f, taufs, niueV, w_preV): # input w=eV and tau=fs
-    w_t = eV2Ha(w_in)
-    w_pr = eV2Ha(w_preV)
-    niu = eV2Ha(niueV)
-    tau = fs2au(taufs)
-    S = 0
-    for (i, val) in enumerate(Ha):
-        w_ge = val - Ha_0
-        dw = w_t - w_ge
-        if w_ge != 0:
-            v2 = f[i] / 2. * 3 / w_ge
-            S += envelope(w_t - w_pr, tau) ** 2. * v2 / complex(niu, -dw)
-    return S
-
-
-def dissignal_sum_NR_ESA(w_in, dEeV, f, taufs, niueV, w_preV): # input w=eV and tau=fs
-    w_t = eV2Ha(w_in)
-    w_pr = eV2Ha(w_preV)
-    niu = eV2Ha(niueV)
-    tau = fs2au(taufs)
-    S = 0
-    for (i, val) in enumerate(dEeV):
-        w_ge = -1. * eV2Ha(val)
-        dw = w_t - w_ge
-        if w_ge != 0:
-            v2 = f[i] / 2. * 3 / w_ge
-            S += envelope(w_t - w_pr, tau) ** 2. * v2 / complex(niu, -dw)
-    return S
-
 
 print(str(w_pu) + 'eV as pump frequency')
 print(str(w_pr) + 'eV as probe frequency')
