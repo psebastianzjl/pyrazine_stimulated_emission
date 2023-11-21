@@ -265,12 +265,6 @@ def get_grad_from_gradient(natom):
     grad = file_utils.split_columns(grad, col=[0, 1, 2],  convert=file_utils.fortran_double)
     return grad
 
-def get_grad_from_gradient_ml(num_mod):
-    grad = file_utils.search_file("gradest%d.dat"%num_mod, r" ")
-    grad = file_utils.split_columns(grad, col=[0, 1, 2],  convert=file_utils.fortran_double)
-    return grad
-
-
 def get_grad_from_stdout(cfile):
     grad = file_utils.search_file(cfile, r"ATOM", after=3, stop_at=r"resulting FORCE", close=False)
     grad = [line[5:] for line in grad]
